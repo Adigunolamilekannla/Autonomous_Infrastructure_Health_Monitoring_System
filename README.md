@@ -6,7 +6,7 @@ The **Autonomous Infrastructure Health Monitoring System** is a deep learning–
 
 It combines **computer vision** and **time-series sensor analysis** to detect anomalies, predict the remaining useful life (RUL) of structures, and automate the entire lifecycle using **MLOps pipelines** — from data ingestion to deployment and monitoring.
 
-This project does **not use LLMs** — it is built purely with **machine learning** and **deep learning** methods.
+This project does **not use LLMs** — it is built purely with  **deep learning**  and clasical machine learning model.
 
 ---
 
@@ -27,9 +27,8 @@ This project aims to:
 
 The system integrates both image-based and sensor-based health monitoring in one pipeline.
 
-IoT Sensors + Drone Cameras
-↓
-Data Ingestion API (Kafka / FastAPI)
+
+Data Ingestion (I use kaggle dataset cause i didn't have access to free sensor dataset)
 ↓
 Data Lake (S3 / MinIO)
 ↓
@@ -39,7 +38,7 @@ Model Training Pipeline (Airflow)
 ↓
 Model Registry (MLflow)
 ↓
-Dockerized Deployment (ECS / K8s)
+Dockerized Deployment (ECS)
 ↓
 Monitoring (Prometheus + Grafana)
 
@@ -61,31 +60,15 @@ Monitoring (Prometheus + Grafana)
 
 | Stage | Tools & Technologies | Description |
 |-------|----------------------|--------------|
-| **Data Ingestion** | Kafka / MQTT / FastAPI | Streams real or simulated sensor data. |
-| **Data Storage** | S3 / MinIO / MongoDB | Stores structured and unstructured data. |
+| **Data Ingestion** | downloaded  kaggle dataset |
+| **Data Storage** | S3  | Stores structured and unstructured data. |
 | **Experiment Tracking** | MLflow | Tracks model metrics, parameters, and versions. |
 | **Data Versioning** | DVC + Git | Keeps datasets and experiments reproducible. |
 | **Pipeline Orchestration** | Apache Airflow  | Automates end-to-end workflow. |
 | **CI/CD** | GitHub Actions | Enables automatic testing and deployment. |
-| **Deployment** | Docker + Kubernetes / ECS | Serves models in production. |
+| **Deployment** |  ECS | Serves models in production. |
 | **Monitoring** | Prometheus + Grafana | Tracks model drift and system health. |
 
----
-
-## 🧾 Datasets
-
-All datasets used in this project are **free and open source**.
-
-### 🏗️ Crack Detection (Images)
-- **[Concrete Crack Images for Classification (Kaggle)](https://www.kaggle.com/datasets/sherlockholmes/concrete-crack-images-for-classification)**  
-  40,000+ images of concrete surfaces (cracked and uncracked).
-
-### 📊 Sensor Data (Vibration & RUL) 
-  Simulated sensor readings for RUL prediction.
-- **[Skoltech Structural Health Monitoring Dataset (Kaggle)](https://www.kaggle.com/datasets/skoltech/structural-health-monitoring)**  
-  Real bridge vibration data for anomaly detection.
-- **[Z24 Bridge Dataset (ETH Zurich)](https://zenodo.org/record/4277311)**  
-  Long-term monitoring data from a real bridge.
 
 
 
@@ -106,9 +89,9 @@ All datasets used in this project are **free and open source**.
 | **Layer** | **Tools** |
 |------------|-----------|
 | Programming | Python, PyTorch, TensorFlow, Scikit-learn |
-| MLOps | MLflow, DVC, Airflow, Docker, Kubernetes |
-| Data | S3 / MinIO, MongoDB |
-| Deployment | AWS ECS / GCP Vertex AI |
+| MLOps | MLflow, DVC, Airflow, Docker |
+| Data | S3 |
+| Deployment | AWS ECS  |
 | Monitoring | Prometheus, Grafana |
 | CI/CD | GitHub Actions, AWS CodePipeline |
 
@@ -122,6 +105,7 @@ cd infrastructure-health
 
 python3 -m venv venv
 source venv/bin/activate
+
 python main.py
 
 

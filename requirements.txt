@@ -1,0 +1,13 @@
+psycopg2-binary
+pandas
+numpy
+python-dotenv
+certifi
+pymongo[srv]
+dill
+scikit-learn
+PyYAML
+mlflow
+awscli
+flask
+torch
