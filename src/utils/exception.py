@@ -1,5 +1,6 @@
 import sys
-from  src.utils.logger import logging
+from typing import Any
+from src.utils.logger import logging
 
 
 class CustomException(Exception):
@@ -9,7 +10,7 @@ class CustomException(Exception):
     where the exception occurred.
     """
 
-    def __init__(self, error_message: str, error_details: sys):
+    def __init__(self, error_message: str, error_details: Any = sys.exc_info()):
         """
         Constructor to initialize the custom exception.
 
@@ -18,15 +19,15 @@ class CustomException(Exception):
         error_message : str
             The error message from the exception.
 
-        error_details : sys
-            The sys module is passed to extract detailed
+        error_details : Any
+            The sys.exc_info() tuple to extract detailed
             information about the exception (line number, filename).
         """
         super().__init__(error_message)  # Initialize base Exception
         self.error_message = str(error_message)
 
         # Extract traceback info
-        _, _, exc_tb = error_details.exc_info()
+        _, _, exc_tb = error_details
         self.lineno = exc_tb.tb_lineno if exc_tb else None
         self.filename = exc_tb.tb_frame.f_code.co_filename if exc_tb else None
 
