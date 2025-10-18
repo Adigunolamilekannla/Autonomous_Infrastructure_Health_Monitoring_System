@@ -1,0 +1,77 @@
+rul_data:
+  columns:
+    - name: Cycle
+      dtype: int64
+    - name: Temperature (°C)
+      dtype: float64
+    - name: Pressure (kPa)
+      dtype: float64
+    - name: Vibration (mm/s)
+      dtype: float64
+    - name: Voltage (V)
+      dtype: float64
+    - name: Current (A)
+      dtype: float64
+    - name: Speed (RPM)
+      dtype: float64
+    - name: Lubrication_Level (%)
+      dtype: float64
+    - name: Humidity (%)
+      dtype: float64
+  target:
+    name: RUL
+    dtype: float64
+
+bridge_data:
+  columns:
+    - name: Age (years)
+      dtype: int64
+    - name: Material
+      dtype: int64
+    - name: Length (m)
+      dtype: float64
+    - name: Width (m)
+      dtype: float64
+    - name: Height (m)
+      dtype: float64
+    - name: Traffic_Volume (vehicles/day)
+      dtype: float64
+    - name: Water_Flow_Rate (m³/s)
+      dtype: float64
+    - name: Stress (MPa)
+      dtype: float64
+    - name: Strain (%)
+      dtype: float64
+    - name: Tensile_Strength (MPa)
+      dtype: float64
+    - name: Rainfall (mm)
+      dtype: float64
+    - name: Bridge_Design
+      dtype: int64
+    - name: Temperature (°C)
+      dtype: float64
+    - name: Humidity (%)
+      dtype: float64
+    - name: Weather_Conditions_Rainy
+      dtype: int64
+      allowed_values: [0, 1]
+    - name: Weather_Conditions_Snowy
+      dtype: int64
+      allowed_values: [0, 1]
+    - name: Weather_Conditions_Sunny
+      dtype: int64
+      allowed_values: [0, 1]
+    - name: Weather_Conditions_Windy
+      dtype: int64
+      allowed_values: [0, 1]
+    - name: Maintenance_Year
+      dtype: int32
+    - name: Maintenance_Month
+      dtype: int32
+    - name: Steel_%
+      dtype: int64
+    - name: Concrete_%
+      dtype: int64
+  target:
+    name: Collapse_Status
+    dtype: int64

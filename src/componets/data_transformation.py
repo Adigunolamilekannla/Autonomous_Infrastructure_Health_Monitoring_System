@@ -1,12 +1,9 @@
-import sys
-import gc
+import sys,os
 import torch
 import pandas as pd
-import numpy as np
 from dataclasses import dataclass
-from torchvision import datasets, transforms
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-from torch.utils.data import DataLoader, TensorDataset, random_split
+from torch.utils.data import  TensorDataset, random_split
 from src.utils.exception import CustomException
 from src.utils.logger import logging
 from src.utils.dir_manager import MakeDirectory
@@ -35,6 +32,8 @@ class DataTransformationConfig:
     transform_test_rul_data: str = "artifacts/transformed_data/rul_data/test_rul_data.csv"
     transform_train_bridge_image_dataset: str = "artifacts/transformed_data/bridge_image_dataset/train_image_dataset.pt"
     transform_test_bridge_image_dataset: str = "artifacts/transformed_data/bridge_image_dataset/test_image_dataset.pt"
+
+    validate_bridged_data:str = os.path.join("artifacts", "validate_bridged", "validate_bridged.csv")
 
 
 # ==================================================
@@ -122,6 +121,8 @@ class DataTransformation:
             # Target mapping
             X_train['Collapse_Status'] = X_train['Collapse_Status'].map({'Standing': 0, 'Collapsed': 1})
             X_test['Collapse_Status'] = X_test['Collapse_Status'].map({'Standing': 0, 'Collapsed': 1})
+            MakeDirectory(self.data_transform_config.validate_bridged_data)
+            X_train.to_csv(self.data_transform_config.validate_bridged_data,index=False)
 
             y_train = X_train['Collapse_Status']
             y_test = X_test['Collapse_Status']
