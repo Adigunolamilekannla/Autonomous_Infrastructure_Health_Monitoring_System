@@ -66,6 +66,11 @@ class DataValidation:
             df = df.drop(target_name, axis=1)
 
         schema_cols = [col["name"] for col in schema["bridge_data"]["columns"]]
+        for name in schema_cols:
+            if name not in df.columns:
+                print(f"this column NAME {name} is not present in schema ")
+
+
         missing = [c for c in schema_cols if c not in df.columns]
         extra = [c for c in df.columns if c not in schema_cols]
         return missing, extra

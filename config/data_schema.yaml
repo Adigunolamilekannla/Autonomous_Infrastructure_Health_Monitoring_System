@@ -1,77 +1,79 @@
 rul_data:
   columns:
     - name: Cycle
-      dtype: int64
+      dtype: int
     - name: Temperature (°C)
-      dtype: float64
+      dtype: float
     - name: Pressure (kPa)
-      dtype: float64
+      dtype: float
     - name: Vibration (mm/s)
-      dtype: float64
+      dtype: float
     - name: Voltage (V)
-      dtype: float64
+      dtype: float
     - name: Current (A)
-      dtype: float64
+      dtype: float
     - name: Speed (RPM)
-      dtype: float64
+      dtype: float
     - name: Lubrication_Level (%)
-      dtype: float64
+      dtype: float
     - name: Humidity (%)
-      dtype: float64
+      dtype: float
   target:
     name: RUL
-    dtype: float64
+    dtype: float
 
 bridge_data:
   columns:
+    - name: Wood_% 
+      dtype: int
     - name: Age (years)
-      dtype: int64
+      dtype: int
     - name: Material
-      dtype: int64
+      dtype: int
     - name: Length (m)
-      dtype: float64
+      dtype: float
     - name: Width (m)
-      dtype: float64
+      dtype: float
     - name: Height (m)
-      dtype: float64
+      dtype: float
     - name: Traffic_Volume (vehicles/day)
-      dtype: float64
+      dtype: float
     - name: Water_Flow_Rate (m³/s)
-      dtype: float64
+      dtype: float
     - name: Stress (MPa)
-      dtype: float64
+      dtype: float
     - name: Strain (%)
-      dtype: float64
+      dtype: float
     - name: Tensile_Strength (MPa)
-      dtype: float64
+      dtype: float
     - name: Rainfall (mm)
-      dtype: float64
+      dtype: float
     - name: Bridge_Design
-      dtype: int64
+      dtype: int
     - name: Temperature (°C)
-      dtype: float64
+      dtype: float
     - name: Humidity (%)
-      dtype: float64
-    - name: Weather_Conditions_Rainy
-      dtype: int64
+      dtype: float
+    - name: Weather_Rainy
+      dtype: int
       allowed_values: [0, 1]
-    - name: Weather_Conditions_Snowy
-      dtype: int64
+    - name: Weather_Snowy
+      dtype: int
       allowed_values: [0, 1]
-    - name: Weather_Conditions_Sunny
-      dtype: int64
+    - name: Weather_Sunny
+      dtype: int
       allowed_values: [0, 1]
-    - name: Weather_Conditions_Windy
-      dtype: int64
+    - name: Weather_Windy
+      dtype: int
       allowed_values: [0, 1]
     - name: Maintenance_Year
-      dtype: int32
+      dtype: int
     - name: Maintenance_Month
-      dtype: int32
+      dtype: int
     - name: Steel_%
-      dtype: int64
+      dtype: int
     - name: Concrete_%
-      dtype: int64
+      dtype: int
   target:
     name: Collapse_Status
-    dtype: int64
+    dtype: int

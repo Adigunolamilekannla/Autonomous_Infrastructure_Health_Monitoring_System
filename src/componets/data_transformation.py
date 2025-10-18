@@ -64,8 +64,8 @@ class DataTransformation:
             # Save transformed RUL tensors
             MakeDirectory(self.data_transform_config.transform_train_rul_data)
             MakeDirectory(self.data_transform_config.transform_test_rul_data)
-            X_train_rul.to_csv(self.data_transform_config.transform_train_rul_data)
-            X_test_rul.to_csv( self.data_transform_config.transform_test_rul_data)
+            X_train_rul.to_csv(self.data_transform_config.transform_train_rul_data,index=False)
+            X_test_rul.to_csv( self.data_transform_config.transform_test_rul_data,index=False)
             logging.info("Successfully transformed RUL Data.")
 
             # ===========================
