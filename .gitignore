@@ -3,3 +3,4 @@ notebooks/trained_model
 notebooks/transformed_data
 artifacts
 logs
+.env

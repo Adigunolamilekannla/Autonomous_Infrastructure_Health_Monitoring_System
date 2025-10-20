@@ -51,7 +51,7 @@ Monitoring (Prometheus + Grafana)
 |------|--------|-------------|
 | **Crack Detection** | CNN (ResNet / EfficientNet) | Classifies images as *cracked* or *non-cracked*. |
 | **Anomaly Detection** | Autoencoder / LSTM | Detects abnormal vibration or temperature readings from sensor data. |
-| **RUL Prediction** | LSTM / GRU | Predicts remaining useful life of structures using time-series data. |
+| **RUL Prediction** | Random Forest Regessor | Predicts remaining useful life of structures using time-series data. |
 | **Sensor Fusion** | Multimodal Neural Network | Combines image + sensor data for unified health assessment. |
 
 ---
@@ -105,6 +105,8 @@ cd infrastructure-health
 
 python3 -m venv venv
 source venv/bin/activate
+
+
 
 python main.py
 
