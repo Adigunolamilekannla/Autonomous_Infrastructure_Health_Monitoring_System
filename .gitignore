@@ -1,6 +1,10 @@
 data
 notebooks/trained_model
 notebooks/transformed_data
-artifacts
 logs
 .env
+static/uploads
+artifacts/processed_datas
+artifacts/reports
+artifacts/transformed_data
+artifacts/validate_bridged

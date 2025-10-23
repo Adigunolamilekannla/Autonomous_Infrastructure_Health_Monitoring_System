@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bridge Health Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>🌉 Bridge Health Prediction</h1>
+    <p>Upload data or image to predict Remaining Useful Life (RUL), Sensor Status, or Image Condition.</p>
+
+    <div class="card">
+        <h2>📂 Upload RUL CSV File</h2>
+        <form action="/predict_rul" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Predict RUL</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>📊 Upload Sensor Data CSV</h2>
+        <form action="/predict_sensor" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Predict Sensor</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>🖼️ Upload Bridge Image</h2>
+        <form action="/predict_image" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".jpg,.jpeg,.png" required>
+            <button type="submit">Predict Image</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>🔗 Fusion Model (Final Report)</h2>
+        <form action="/predict_fusion" method="POST">
+            <button type="submit">Get Fusion Prediction</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+

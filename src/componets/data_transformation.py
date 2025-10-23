@@ -1,4 +1,4 @@
-import sys,os
+import sys,os,joblib
 import torch
 import pandas as pd
 from dataclasses import dataclass
@@ -34,6 +34,7 @@ class DataTransformationConfig:
     transform_test_bridge_image_dataset: str = "artifacts/transformed_data/bridge_image_dataset/test_image_dataset.pt"
 
     validate_bridged_data:str = os.path.join("artifacts", "validate_bridged", "validate_bridged.csv")
+    scaler_model_path:str = os.path.join("artifacts", "models", "scaler_model.joblib")
 
 
 # ==================================================
@@ -45,7 +46,7 @@ class DataTransformation:
             logging.info("Initializing DataTransformation...")
             self.data_transform_config = data_transform_config
         except Exception as e:
-            raise CustomException(e, sys.exc_info())
+            raise CustomException(e, sys)
 
     # ==================================================
     # Main Data Transformation Function
@@ -123,16 +124,23 @@ class DataTransformation:
             X_test['Collapse_Status'] = X_test['Collapse_Status'].map({'Standing': 0, 'Collapsed': 1})
             MakeDirectory(self.data_transform_config.validate_bridged_data)
             X_train.to_csv(self.data_transform_config.validate_bridged_data,index=False)
+            
 
             y_train = X_train['Collapse_Status']
             y_test = X_test['Collapse_Status']
             X_train.drop('Collapse_Status', axis=1, inplace=True)
             X_test.drop('Collapse_Status', axis=1, inplace=True)
+            X_train[:3000].to_csv("notebooks/transformed_data/bridged_sensor_dataset.csv")
 
             # Standardization
             scaler = StandardScaler()
             X_train_scaled = scaler.fit_transform(X_train)
             X_test_scaled = scaler.transform(X_test)
+
+            # Save Scaler Model
+            MakeDirectory(self.data_transform_config.scaler_model_path)
+            joblib.dump(scaler,self.data_transform_config.scaler_model_path)
+            
 
             X_train_tensor = torch.tensor(X_train_scaled).float()
             X_test_tensor = torch.tensor(X_test_scaled).float()
@@ -149,6 +157,10 @@ class DataTransformation:
             torch.save(train_dataset, self.data_transform_config.transform_train_bridge_data)
             torch.save(test_dataset, self.data_transform_config.transform_test_bridge_data)
             logging.info("Successfully transformed Bridge Data.")
+
+
+
+
 
             # ===========================
             # BRIDGE IMAGE DATA TRANSFORMATION
@@ -169,7 +181,7 @@ class DataTransformation:
             logging.info("Successfully transformed Bridge Image Data.")
 
         except Exception as e:
-            raise CustomException(e, sys.exc_info())
+            raise CustomException(e, sys)
 
     # ==================================================
     # Entry Function
@@ -180,4 +192,4 @@ class DataTransformation:
             self.transform_data()
             logging.info("Data Transformation Completed Successfully.")
         except Exception as e:
-            raise CustomException(e, sys.exc_info())
+            raise CustomException(e, sys)

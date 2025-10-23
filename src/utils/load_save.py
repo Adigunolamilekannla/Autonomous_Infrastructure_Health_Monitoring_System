@@ -25,7 +25,7 @@ def load_yaml(file_path):
 def generate_report(results: dict):
     try:
         # Define report path
-        model_evaluation_report = os.path.join("artifacts", "report", "model_evaluation_report.txt")
+        model_evaluation_report = os.path.join("artifacts", "reports", "model_evaluation_report.txt")
 
         # Ensure parent directory exists
         

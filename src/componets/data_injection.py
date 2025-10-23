@@ -119,7 +119,7 @@ class DataInjection:
 
             dataset = SafeImageFolder(root=self.data_injection_config.raw_bridge_image_dataset,
                                       transform=transform)
-
+            torch.save(dataset,"data/image_dataset/road_image_dataset/image_data.pt")
             MakeDirectory(self.data_injection_config.processed_bridge_image_dataset)
 
             torch.save(dataset, self.data_injection_config.processed_bridge_image_dataset)

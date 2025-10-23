@@ -11,7 +11,7 @@ from src.utils.load_save import load_yaml
 @dataclass
 class DataValidationConfig:
     schema_path: str = os.path.join("config", "data_schema.yaml")  
-    report_path: str = os.path.join("data_valid_report", "data_validation_report.txt")
+    report_path: str = os.path.join("artifacts","reports", "data_validation_report.txt")
     rul_data_path: str = os.path.join("artifacts", "transformed_data", "rul_data", "train_rul_data.csv")
     bridge_sensor_data_path: str = os.path.join("artifacts", "validate_bridged", "validate_bridged.csv")
 

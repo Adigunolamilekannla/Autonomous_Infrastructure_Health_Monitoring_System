@@ -197,4 +197,29 @@ class ResNetLike(nn.Module):
         x = self.fc(x)  # Logits
 
         return x
-            
+    
+def create_target(row):
+    # Map image prediction
+    image_cond = 'Good' if row['bridge_image_prediction'] == 0 else 'Bad'
+    
+    # Map RUL
+    if row['rul_model_prediction'] >= 180:
+        rul_cond = 'Good'
+    elif 50 < row['rul_model_prediction'] < 180:
+        rul_cond = "Moderate"
+    else:
+        rul_cond = 'Bad'
+        
+    
+    
+    # Map bridged prediction
+    struct_cond = 'Standing' if row['bridge_sensor_prediction'] == 0 else 'Collapsed'
+    
+    # Fusion: Prioritize negatives
+
+    if 'Bad' in [image_cond, rul_cond] or struct_cond == 'Collapsed':
+        return 0 # Bad
+    elif image_cond == 'Good' and rul_cond == 'Good' and struct_cond == 'Standing':
+        return 2 # Good
+    elif image_cond == 'Good' and rul_cond == "Moderate" and struct_cond == 'Standing':
+        return 1 # Moderate
