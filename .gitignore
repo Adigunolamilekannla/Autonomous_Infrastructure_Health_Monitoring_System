@@ -4,7 +4,4 @@ notebooks/transformed_data
 logs
 .env
 static/uploads
-artifacts/processed_datas
-artifacts/reports
-artifacts/transformed_data
-artifacts/validate_bridged
+artifacts
